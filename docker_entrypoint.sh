@@ -2,8 +2,8 @@
 
 function docron() {
 
-  touch /mongo_sync.log
-  tail -f /mongo_sync.log &
+  touch /var/log/mongo_sync.log
+  tail -f /var/log/mongo_sync.log &
   crontab /crontab.conf
   echo "=> Running cron job"
   exec cron -f
@@ -18,7 +18,7 @@ if [[ "${1}" == "backup" ]]; then
     fi
 
     echo "=> Adding backup crontab entry"
-    echo "${CRON_TIME} /backup.sh >> /mongo_sync.log 2>&1" >> /crontab.conf
+    echo "${CRON_TIME} /backup.sh >> /var/log/mongo_sync.log 2>&1" >> /crontab.conf
 
     docron
 
@@ -30,7 +30,7 @@ elif [[ "${1}" == "restore" ]]; then
     fi
 
     echo "=> Adding restore crontab entry"
-    echo "${CRON_TIME} /restore.sh >> /mongo_sync.log 2>&1" >> /crontab.conf
+    echo "${CRON_TIME} /restore.sh >> /var/log/mongo_sync.log 2>&1" >> /crontab.conf
 
     docron
 
@@ -42,7 +42,7 @@ elif [[ -z "${1}" || "${1}" == "sync" ]]; then
     fi
 
     echo "=> Adding sync crontab entry"
-    echo "${CRON_TIME} /backup.sh >> /mongo_sync.log 2>&1" >> /crontab.conf
+    echo "${CRON_TIME} /backup.sh >> /var/log/mongo_sync.log 2>&1" >> /crontab.conf
 
     docron
 
