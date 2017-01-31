@@ -22,7 +22,7 @@ ADD backup.sh /backup.sh
 ADD restore.sh /restore.sh
 ADD sync.sh /sync.sh
 
-VOLUME ["/backup"]
+VOLUME ["/backup", "/var/log/"]
 
 ENTRYPOINT ["/docker_entrypoint.sh"]
 
