@@ -74,4 +74,4 @@ cron \
 
       ENTRYPOINT ["/docker_entrypoint.sh"]
 
-      CMD ["sync"]
+      CMD ["backup"]
