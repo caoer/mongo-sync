@@ -51,6 +51,7 @@ RUN set -x \
 		${MONGO_PACKAGE}-mongos=$MONGO_VERSION \
 		${MONGO_PACKAGE}-tools=$MONGO_VERSION \
 		python-pip \
+		&& cron \
 		&& pip install awscli \
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
